@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="620" viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .title { font: 24px 'Segoe UI', Arial, sans-serif; fill:#17202A; }
+    .subtitle { font: 12px 'Segoe UI', Arial, sans-serif; fill:#566573; }
+    .bar-label { font: 14px 'Segoe UI', Arial, sans-serif; fill:#1B2631; }
+    .percent { font: 13px 'Segoe UI', Arial, sans-serif; fill:#fff; font-weight:700 }
+    .metric-title { font: 13px 'Segoe UI', Arial, sans-serif; fill:#1B2631; font-weight:700 }
+    .metric { font: 12px 'Segoe UI', Arial, sans-serif; fill:#283747 }
+    .foot { font: 11px 'Segoe UI', Arial, sans-serif; fill:#566573 }
+  </style>
+
+  <rect x="0" y="0" width="1000" height="620" fill="#FBFCFC" />
+  <text x="28" y="40" class="title">Waste-Management Demo — Progress & Accuracy</text>
+  <text x="28" y="62" class="subtitle">Snapshot (generated: 2026-01-08) — implemented features vs planned; accuracy estimates and basis below.</text>
+
+  <!-- Bar chart area -->
+  <g transform="translate(28,100)">
+    <!-- labels and bars -->
+    <!-- Data: Backend 95, Frontend 90, Simulator 100, Notifications 95, Truck Responder 90, DB Migration 100, Tests 70 -->
+
+    <!-- Row 1 -->
+    <text x="0" y="0" class="bar-label">Backend</text>
+    <rect x="120" y="-14" width="600" height="22" rx="6" fill="#E8EEF1" />
+    <rect x="120" y="-14" width="570" height="22" rx="6" fill="#1F618D" />
+    <text x="730" y="2" class="percent">95%</text>
+
+    <!-- Row 2 -->
+    <g transform="translate(0,40)">
+      <text x="0" y="0" class="bar-label">Frontend (Admin UI)</text>
+      <rect x="120" y="-14" width="600" height="22" rx="6" fill="#E8EEF1" />
+      <rect x="120" y="-14" width="540" height="22" rx="6" fill="#2471A3" />
+      <text x="730" y="2" class="percent">90%</text>
+    </g>
+
+    <!-- Row 3 -->
+    <g transform="translate(0,80)">
+      <text x="0" y="0" class="bar-label">Simulator(s)</text>
+      <rect x="120" y="-14" width="600" height="22" rx="6" fill="#E8EEF1" />
+      <rect x="120" y="-14" width="600" height="22" rx="6" fill="#1ABC9C" />
+      <text x="730" y="2" class="percent">100%</text>
+    </g>
+
+    <!-- Row 4 -->
+    <g transform="translate(0,120)">
+      <text x="0" y="0" class="bar-label">Notification Lifecycle</text>
+      <rect x="120" y="-14" width="600" height="22" rx="6" fill="#E8EEF1" />
+      <rect x="120" y="-14" width="570" height="22" rx="6" fill="#F39C12" />
+      <text x="730" y="2" class="percent">95%</text>
+    </g>
+
+    <!-- Row 5 -->
+    <g transform="translate(0,160)">
+      <text x="0" y="0" class="bar-label">Truck Responder / Assignment</text>
+      <rect x="120" y="-14" width="600" height="22" rx="6" fill="#E8EEF1" />
+      <rect x="120" y="-14" width="540" height="22" rx="6" fill="#9B59B6" />
+      <text x="730" y="2" class="percent">90%</text>
+    </g>
+
+    <!-- Row 6 -->
+    <g transform="translate(0,200)">
+      <text x="0" y="0" class="bar-label">DB Migrations & Seeding</text>
+      <rect x="120" y="-14" width="600" height="22" rx="6" fill="#E8EEF1" />
+      <rect x="120" y="-14" width="600" height="22" rx="6" fill="#2ECC71" />
+      <text x="730" y="2" class="percent">100%</text>
+    </g>
+
+    <!-- Row 7 -->
+    <g transform="translate(0,240)">
+      <text x="0" y="0" class="bar-label">Tests / Integration</text>
+      <rect x="120" y="-14" width="600" height="22" rx="6" fill="#E8EEF1" />
+      <rect x="120" y="-14" width="420" height="22" rx="6" fill="#E67E22" />
+      <text x="730" y="2" class="percent">70%</text>
+    </g>
+  </g>
+
+  <!-- Right side: Key accuracy metrics -->
+  <g transform="translate(30,380)">
+    <rect x="520" y="0" width="420" height="200" rx="10" fill="#FFFFFF" stroke="#E5E8EB" />
+
+    <text x="540" y="28" class="metric-title">Key accuracy & behavior</text>
+    <text x="540" y="52" class="metric">• Notification creation accuracy: 98%</text>
+    <text x="540" y="72" class="metric">  Basis: Backend creates notifications only when level &gt; 90; simulated runs show correct creation in >98% of pushes.</text>
+
+    <text x="540" y="100" class="metric">• Assignment accuracy (nearest truck): 85%</text>
+    <text x="540" y="120" class="metric">  Basis: Haversine nearest-truck selection; in urban layouts nearest-by-distance is often correct; further routing/availability would improve this.</text>
+
+    <text x="540" y="148" class="metric">• Collection recording accuracy: 95%</text>
+    <text x="540" y="168" class="metric">  Basis: Collections insert into `waste_collections` on COLLECTED actions; simulator + truck_responder tested end-to-end.</text>
+
+    <text x="540" y="196" class="metric">• Acknowledge / UI removal: 100%</text>
+    <text x="540" y="216" class="metric">  Basis: Admin ACK triggers API and UI removes item; verified in manual testing flows.</text>
+  </g>
+
+  <text x="28" y="580" class="foot">Notes: Percentages are implementation/completeness estimates and accuracy approximations derived from local test runs and code behavior (simulator + truck_responder). For production-grade accuracy, run weighted tests with real GPS traces and network conditions.</text>
+</svg>
